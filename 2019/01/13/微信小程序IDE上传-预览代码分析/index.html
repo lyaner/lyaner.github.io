@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/assets/favicon.png?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="接口分析见：小程序IDE http接口分析  打包源代码主要步骤就是，遍历小程序项目目录，读取每一个文件，最终合并成一个文件内容如下：packFile.js 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263con">
+<meta name="keywords" content="小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序IDE上传&#x2F;预览代码分析">
+<meta property="og:url" content="http://lyan.me/2019/01/13/微信小程序IDE上传-预览代码分析/index.html">
+<meta property="og:site_name" content="lyan">
+<meta property="og:description" content="接口分析见：小程序IDE http接口分析  打包源代码主要步骤就是，遍历小程序项目目录，读取每一个文件，最终合并成一个文件内容如下：packFile.js 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263con">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2022-09-24T01:55:55.155Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序IDE上传&#x2F;预览代码分析">
+<meta name="twitter:description" content="接口分析见：小程序IDE http接口分析  打包源代码主要步骤就是，遍历小程序项目目录，读取每一个文件，最终合并成一个文件内容如下：packFile.js 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263con">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="lyan" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://lyan.me/2019/01/13/微信小程序IDE上传-预览代码分析/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>微信小程序IDE上传/预览代码分析 | lyan</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-demo">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/demo-entry" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>一些栗子</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lyan.me/2019/01/13/微信小程序IDE上传-预览代码分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">微信小程序IDE上传/预览代码分析
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-13 18:45:37" itemprop="dateCreated datePublished" datetime="2019-01-13T18:45:37+08:00">2019-01-13</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>接口分析见：<a href="https://www.jianshu.com/p/a1f357152dca" title="小程序IDE http接口分析" target="_blank" rel="noopener">小程序IDE http接口分析</a></p>
+</blockquote>
+<h2 id="打包源代码"><a href="#打包源代码" class="headerlink" title="打包源代码"></a>打包源代码</h2><p>主要步骤就是，遍历小程序项目目录，读取每一个文件，最终合并成一个文件<br>内容如下：packFile.js</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="built_in">require</span>(<span class="string">"glob"</span>),</span><br><span class="line">b = <span class="built_in">require</span>(<span class="string">"fs"</span>),</span><br><span class="line">c = <span class="built_in">require</span>(<span class="string">"path"</span>),</span><br><span class="line">e = <span class="built_in">require</span>(<span class="string">"crypto"</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="keyword">async</span> (f, g, h = &#123;&#125;) =&gt; &#123;</span><br><span class="line"><span class="keyword">var</span> i = [</span><br><span class="line">  <span class="keyword">new</span> Buffer(<span class="number">1</span>),</span><br><span class="line">  <span class="keyword">new</span> Buffer(<span class="number">4</span>),</span><br><span class="line">  <span class="keyword">new</span> Buffer(<span class="number">4</span>),</span><br><span class="line">  <span class="keyword">new</span> Buffer(<span class="number">4</span>),</span><br><span class="line">  <span class="keyword">new</span> Buffer(<span class="number">1</span>)</span><br><span class="line">];</span><br><span class="line">i[<span class="number">0</span>].writeIntLE(<span class="number">190</span>), i[<span class="number">1</span>].writeInt32BE(<span class="number">1</span>), i[<span class="number">4</span>].writeIntLE(<span class="number">237</span>);</span><br><span class="line"><span class="keyword">let</span> j = <span class="number">0</span>,</span><br><span class="line">  k = [],</span><br><span class="line">  l = [],</span><br><span class="line">  m = [],</span><br><span class="line">  n = [],</span><br><span class="line">  o = [];</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">p, q</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> r = <span class="built_in">Object</span>.assign(&#123; nodir: !<span class="number">0</span> &#125;, h),</span><br><span class="line">    s = &#123;&#125;;</span><br><span class="line">  a(<span class="string">`<span class="subst">$&#123;f&#125;</span>/**`</span>, r, <span class="function">(<span class="params">a, r</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!a) &#123;</span><br><span class="line">      r.forEach(<span class="function"><span class="params">a</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> d = b.readFileSync(a),</span><br><span class="line">          g = c.relative(f, a);</span><br><span class="line">        <span class="keyword">if</span> (h.needMd5) &#123;</span><br><span class="line">          <span class="keyword">let</span> a = e.createHash(<span class="string">"md5"</span>);</span><br><span class="line">          a.update(d);</span><br><span class="line">          <span class="keyword">let</span> b = a.digest(<span class="string">"hex"</span>);</span><br><span class="line">          <span class="keyword">if</span> (((s[g] = b), h.ignoreFileMd5 &amp;&amp; h.ignoreFileMd5[g] == b))</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> i = <span class="keyword">new</span> Buffer(<span class="string">`/<span class="subst">$&#123;g.replace(<span class="regexp">/\\/g</span>, <span class="string">"/"</span>)&#125;</span>`</span>);</span><br><span class="line">        j++, m.push(i), n.push(d);</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">let</span> a = <span class="number">18</span> + <span class="number">12</span> * j + Buffer.concat(m).length;</span><br><span class="line">      l = m.map(<span class="function">(<span class="params">b, c</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> d = <span class="keyword">new</span> Buffer(<span class="number">4</span>);</span><br><span class="line">        d.writeInt32BE(b.length);</span><br><span class="line">        <span class="keyword">let</span> e = <span class="keyword">new</span> Buffer(<span class="number">4</span>),</span><br><span class="line">          f = n[c].length,</span><br><span class="line">          g = a;</span><br><span class="line">        e.writeInt32BE(g), (a += f);</span><br><span class="line">        <span class="keyword">let</span> h = <span class="keyword">new</span> Buffer(<span class="number">4</span>);</span><br><span class="line">        <span class="keyword">return</span> h.writeInt32BE(f), Buffer.concat([d, b, e, h]);</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">let</span> q = <span class="keyword">new</span> Buffer(<span class="number">4</span>);</span><br><span class="line">      q.writeInt32BE(j),</span><br><span class="line">        l.unshift(q),</span><br><span class="line">        (k = Buffer.concat(l)),</span><br><span class="line">        (o = Buffer.concat(n)),</span><br><span class="line">        i[<span class="number">2</span>].writeInt32BE(k.length),</span><br><span class="line">        i[<span class="number">3</span>].writeInt32BE(o.length),</span><br><span class="line">        (i = Buffer.concat(i));</span><br><span class="line">      <span class="keyword">let</span> t = Buffer.concat([i, k, o]);</span><br><span class="line">      b.writeFileSync(g, t),</span><br><span class="line">        p(&#123; destPath: g, data: t, fileMd5Info: s &#125;);</span><br><span class="line">    &#125; <span class="keyword">else</span> q(a);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="上传预览"><a href="#上传预览" class="headerlink" title="上传预览"></a>上传预览</h2><p>使用packFile.js打包源代码，将结果拿到，然后进行gz压缩，调用request模块进行上传.<br>upload.js 如下<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> zlib = <span class="built_in">require</span>(<span class="string">"zlib"</span>);</span><br><span class="line"><span class="keyword">const</span> request = <span class="built_in">require</span>(<span class="string">"request"</span>);</span><br><span class="line"><span class="keyword">const</span> readFile = <span class="built_in">require</span>(<span class="string">'./packFile'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> url = <span class="string">'https://servicewechat.com/wxa-dev-new/testsource?_r=0.8285819896175328&amp;appid=xxx&amp;platform=0&amp;ext_appid=&amp;os=darwin&amp;clientversion=1011711020&amp;gzip=1&amp;path=pages%2Fhome%3F&amp;newticket=_GWuaDA19IaLERB2pjnjJGaI61JHOfXnA8N6dDoJT20&amp;os=darwin&amp;clientversion=1.01.1711020'</span>;</span><br><span class="line"><span class="keyword">var</span> f = readFile(<span class="string">'dist/'</span>, <span class="string">'./1.wx'</span>).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> data = zlib.gzipSync(res.data);</span><br><span class="line">    request(&#123; url, body: data, method: <span class="string">'post'</span>,<span class="string">"proxy"</span>:<span class="string">"http://127.0.0.1:8888"</span>,<span class="string">"tunnel"</span>:<span class="literal">false</span> &#125;, <span class="function">(<span class="params">a, b, c</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(c));</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>运行 <code>sudo node ./upload.js</code>;<br>则会生成<code>1.wx</code>文件，拿到这个文件上传就行了～</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/小程序/" rel="tag"># 小程序</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/10/微信小程序IDE之http接口分析/" rel="next" title="微信小程序IDE之http接口分析">
+                <i class="fa fa-chevron-left"></i> 微信小程序IDE之http接口分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/20/nginx配置https/" rel="prev" title="nginx配置https">
+                nginx配置https <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/avatar.png" alt="lyan">
+            
+              <p class="site-author-name" itemprop="name">lyan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/liuzheng644607" title="GitHub &rarr; https://github.com/liuzheng644607" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/u/2819564952" title="Weibo &rarr; http://weibo.com/u/2819564952" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:liu-yaner@foxmail.com" title="E-Mail &rarr; mailto:liu-yaner@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/4d71fefa7a45" title="简书 &rarr; https://www.jianshu.com/u/4d71fefa7a45" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>简书</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#打包源代码"><span class="nav-number">1.</span> <span class="nav-text">打包源代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上传预览"><span class="nav-number">2.</span> <span class="nav-text">上传预览</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyan</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '80c551d92fa30ec2922d',
+    clientSecret: '5b5a14006758964a4cad462d6a88a64e1ff969f6',
+    repo: 'blogsource',
+    owner: 'liuzheng644607',
+    admin: ['liuzheng644607'],
+    id: md5(location.pathname),
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      
+        background-color: #eee;
+        background-image: linear-gradient(#fcfcfc, #eee);
+        border: 1px solid #d5d5d5;
+        border-radius: 3px;
+      
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      
+        right: 4px;
+        top: 8px;
+      
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1;
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; // Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.readOnly = true;
+        ta.value = code;
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, code.length);
+        ta.readOnly = false;
+        var result = document.execCommand('copy');
+        
+        ta.blur(); // For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+</body>
+</html>

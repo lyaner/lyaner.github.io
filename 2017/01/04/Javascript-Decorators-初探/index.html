@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/assets/favicon.png?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="现在什么 AOP 编程在前端领域越来越被大家追捧，所以我也来探究一下如何在javascript中进行AOP编程。 装饰器无疑是对AOP最有力的设计，在es5 时代，可以通过 Object.defineProperty来对对象属性／方法 进行访问修饰，但用起来需要写一堆东西。现在decorator已经在ES7的提案中了，借助Babel等转码工具，我们现在也能在javascript中使用装饰器语法">
+<meta name="keywords" content="javascript,decorator">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript Decorators 初探">
+<meta property="og:url" content="http://lyan.me/2017/01/04/Javascript-Decorators-初探/index.html">
+<meta property="og:site_name" content="lyan">
+<meta property="og:description" content="现在什么 AOP 编程在前端领域越来越被大家追捧，所以我也来探究一下如何在javascript中进行AOP编程。 装饰器无疑是对AOP最有力的设计，在es5 时代，可以通过 Object.defineProperty来对对象属性／方法 进行访问修饰，但用起来需要写一堆东西。现在decorator已经在ES7的提案中了，借助Babel等转码工具，我们现在也能在javascript中使用装饰器语法">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/188895-bb0a965e2fb5aded.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/188895-ef577d24f7fa9332.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2022-09-24T01:55:55.152Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript Decorators 初探">
+<meta name="twitter:description" content="现在什么 AOP 编程在前端领域越来越被大家追捧，所以我也来探究一下如何在javascript中进行AOP编程。 装饰器无疑是对AOP最有力的设计，在es5 时代，可以通过 Object.defineProperty来对对象属性／方法 进行访问修饰，但用起来需要写一堆东西。现在decorator已经在ES7的提案中了，借助Babel等转码工具，我们现在也能在javascript中使用装饰器语法">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/188895-bb0a965e2fb5aded.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="lyan" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://lyan.me/2017/01/04/Javascript-Decorators-初探/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Javascript Decorators 初探 | lyan</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-demo">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/demo-entry" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>一些栗子</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lyan.me/2017/01/04/Javascript-Decorators-初探/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Javascript Decorators 初探
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-01-04 21:54:36" itemprop="dateCreated datePublished" datetime="2017-01-04T21:54:36+08:00">2017-01-04</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://upload-images.jianshu.io/upload_images/188895-bb0a965e2fb5aded.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="javascript decorator"></p>
+<blockquote>
+<p>现在什么 <strong>AOP</strong> 编程在前端领域越来越被大家追捧，所以我也来探究一下如何在javascript中进行AOP编程。 装饰器无疑是对AOP最有力的设计，在es5 时代，可以通过 <code>Object.defineProperty</code>来对对象属性／方法 进行访问修饰，但用起来需要写一堆东西。现在decorator已经在ES7的提案中了，借助Babel等转码工具，我们现在也能在javascript中使用装饰器语法了！<br><a id="more"></a></p>
+</blockquote>
+<h4 id="什么是Decorator"><a href="#什么是Decorator" class="headerlink" title="什么是Decorator"></a>什么是Decorator</h4><p>decorator 也叫装饰器(装潢器)。它可以在不侵入到原有代码内部的情况下而通过标注的方式修改类代码行为，装饰器对代码行为的改变是在编译阶段完成的，而不是在执行阶段。虽然Decorator还处在ES7草案阶段，但是我们可以通过Babel来转换es7代码，所以大家还是可以愉快的使用decorator。<br>在ES7提案中，Decorator的描述如下：</p>
+<blockquote>
+<ul>
+<li>an expression</li>
+<li>that evaluates to a function</li>
+<li>that takes the target, name, and decorator descriptor as arguments</li>
+<li>and optionally returns a decorator descriptor to install on the target object.<br>出自 <a href="https://github.com/wycats/javascript-decorators" target="_blank" rel="noopener">https://github.com/wycats/javascript-decorators</a></li>
+</ul>
+</blockquote>
+<p>在代码层面，Decorator其实就是一个函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readonly</span>(<span class="params">target, name, desc</span>) </span>&#123;</span><br><span class="line">  desc.writable = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">return</span> desc;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> o = &#123;</span><br><span class="line">  @readonly  <span class="comment">// 标识为只读属性</span></span><br><span class="line">  name: <span class="string">'liuyan'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 赋值失败并报错</span></span><br><span class="line">o.name = <span class="string">'liuzheng'</span>; <span class="comment">// Cannot assign to read only property 'name' of object '#&lt;Object&gt;'</span></span><br></pre></td></tr></table></figure>
+<p>上面的代码实现了一个简单的装饰器用来使对象属性只读。函数<code>readonly</code> 规定了装饰器描述符的行为。不难看出，这和ES5中的 <code>Object.defineProperty</code> 方法很类似，使用es5<br>代码一样能够实现相同的功能，其实使用Babel转码最终也就是转换成了<code>Object.defineProperty</code> 的实现形式，只是使用  <code>@readonly</code> 这种语法更能直观的描述出来， 对比Java中的注解、 Python中的装饰器其实都使用类似的语法。</p>
+<h4 id="Decorator用法"><a href="#Decorator用法" class="headerlink" title="Decorator用法"></a>Decorator用法</h4><p><strong>给属性添加Decorator</strong><br>和前面的例子一样，有时候需要在JS中实现类静态成员，这个时候就可以使用Decorator来修饰了,代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  @readonly</span><br><span class="line">  <span class="keyword">static</span> MIN_AGE = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样，当不小心重新为 Person.MIN_AGE 赋值的时候，就会抛出错误。</p>
+<p><strong>给方法添加Decorator</strong><br>也可以对方法进行装饰。比如现在需要实现一个功能： 设计一个装饰器，它能够统计出一个异步方法(这里只用Promise)的耗时。还是以Person类为例，给Person增加一个request方法，统计request执行耗时，代码实现非常简单：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> MIN_AGE = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  @duration</span><br><span class="line">  request() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">       setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">         resolve(&#123;<span class="attr">status</span>: <span class="number">0</span>&#125;)</span><br><span class="line">       &#125;, <span class="number">3000</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 装饰器</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">duration</span>(<span class="params">target, key, desc</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; value &#125; = desc;</span><br><span class="line">  <span class="keyword">let</span> _time = <span class="built_in">Date</span>.now();</span><br><span class="line">  desc.value = <span class="function"><span class="keyword">function</span>(<span class="params">...args</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> res = value.apply(<span class="keyword">this</span>, args);</span><br><span class="line">    <span class="keyword">if</span> (res &amp;&amp; <span class="keyword">typeof</span> res.then === <span class="string">'function'</span>) &#123;</span><br><span class="line">      res.then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;key&#125;</span>() ==&gt; 耗时:<span class="subst">$&#123;<span class="built_in">Date</span>.now() - _time&#125;</span>ms`</span>);</span><br><span class="line">      &#125;, () =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;key&#125;</span>() ==&gt; 耗时:<span class="subst">$&#123;<span class="built_in">Date</span>.now() - _time&#125;</span>ms`</span>);</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;key&#125;</span>() ==&gt; 耗时:<span class="subst">$&#123;<span class="built_in">Date</span>.now() - _time&#125;</span>ms`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 需要把描述对象返回</span></span><br><span class="line">  <span class="keyword">return</span> desc;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开始</span></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person(<span class="string">'liuyan'</span>);</span><br><span class="line">p.request(); <span class="comment">// 输出:  request() ==&gt; 耗时:3002ms</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>作用于class</strong><br>也可以在为class 应用装饰器，现在我要通过装饰器给Person类增加一个静态属性IS_PERSON; (当然，这没什么卵用…)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 增加静态属性IS_PERSON</span></span><br><span class="line">@isPerson</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPerson</span>(<span class="params">target</span>) </span>&#123;</span><br><span class="line">  target.IS_PERSON = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Person.IS_PERSON); <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>也可以作用于class的实例属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params">target</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;sayHi&#125; = target.prototype;</span><br><span class="line">  target.prototype.sayHi = <span class="function"><span class="keyword">function</span>(<span class="params">...args</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> sayHi === <span class="string">'function'</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> res = sayHi.apply(<span class="keyword">this</span>, args);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Hi, I\'m <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person(<span class="string">'liuyan'</span>);</span><br><span class="line">p.sayHi(); <span class="comment">// Hi, I'm liuyan</span></span><br></pre></td></tr></table></figure></p>
+<p>decorator作用于类最常见的用法就是mixins了，mixin 也就是允许我们为组件(类) 附加额外的功能，用过react的童鞋应该对mixin不陌生，不过使用mixin扩展新功能这种用法已经<a href="https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.5hx3ugz68" target="_blank" rel="noopener">不被推荐</a>了。<br>decorator已经在各知名框架中开始大面积使用，比如Angular2（ng2）, 虽然ng2使用TypeScript 来构建的，但是装饰器这种语法实现也是大同小异的。下图是从angular js官网截取的示例代码：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/188895-ef577d24f7fa9332.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Angular2中，大量使用了decorator"></p>
+<h4 id="实际使用场景（Logger）"><a href="#实际使用场景（Logger）" class="headerlink" title="实际使用场景（Logger）"></a>实际使用场景（Logger）</h4><p>一个东西被吹得再好，如果没有使用场景那也是白搭。<br>在实际业务中，很多时候把装饰器用在日志工具上面，因为日志这种东西和业务几乎是完全分离的，试想一下，如果业务代码里面参杂了各种各样的日志信息…., 对于阅读代码逻辑以及维护来说都是灾难性的，这个时候我们的decorator就能派上用场了。<br>假设需要实现一个对定时任务的监控logger， 需要监控何时开始、结束，以及任务运行耗时的信息。代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ScheduleJob</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  @log(<span class="string">'info'</span>, <span class="string">'开始'</span>)</span><br><span class="line">  start() &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.stop();</span><br><span class="line">    &#125;, <span class="number">2000</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @log(<span class="string">'info'</span>, <span class="string">'结束'</span>)</span><br><span class="line">  stop() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> job = <span class="keyword">new</span> ScheduleJob(<span class="string">'liuyan'</span>);</span><br><span class="line">job.start();</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出: </span></span><br><span class="line"><span class="comment">//Thu Jan 05 2017 18:34:09 GMT+0800 (CST) - info - 开始 </span></span><br><span class="line"><span class="comment">//Thu Jan 05 2017 18:34:09 GMT+0800 (CST) - info - 开始....time: 1483612449481</span></span><br><span class="line"><span class="comment">//Thu Jan 05 2017 18:34:12 GMT+0800 (CST) - info - 结束 </span></span><br><span class="line"><span class="comment">//Thu Jan 05 2017 18:34:12 GMT+0800 (CST) - info - 结束....time: 1483612452258，耗时：2777ms </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params">t = <span class="string">'info'</span>, msg = <span class="string">''</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">target, name, desc</span>) </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> &#123;value&#125; = desc;</span><br><span class="line">    </span><br><span class="line">    desc.value = <span class="function"><span class="keyword">function</span>(<span class="params">...args</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>()&#125;</span> - <span class="subst">$&#123;t&#125;</span> - <span class="subst">$&#123;msg&#125;</span> `</span>)</span><br><span class="line">      <span class="keyword">let</span> res = value.apply(<span class="keyword">this</span>, args);</span><br><span class="line">      <span class="keyword">if</span>(name === <span class="string">'start'</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>[<span class="string">`startTime`</span>] = <span class="built_in">Date</span>.now();</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>()&#125;</span> - <span class="subst">$&#123;t&#125;</span> - 开始....time: <span class="subst">$&#123;<span class="keyword">this</span>[<span class="string">`startTime`</span>]&#125;</span>`</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span>( name === <span class="string">'stop'</span> ) &#123;</span><br><span class="line">        <span class="keyword">this</span>[<span class="string">`endTime`</span>] = <span class="built_in">Date</span>.now();</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>()&#125;</span> - <span class="subst">$&#123;t&#125;</span> - 结束....time: <span class="subst">$&#123;<span class="keyword">this</span>[<span class="string">`endTime`</span>]&#125;</span>，耗时：<span class="subst">$&#123;<span class="keyword">this</span>[<span class="string">`endTime`</span>] - <span class="keyword">this</span>[<span class="string">`startTime`</span>]&#125;</span>ms`</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的是一个很简单的需求，我们没有修改原有类的任何代码就实现了日志监控。其实这种实现在编程器思想里面叫做 AOP，中文名也叫面向切面编程，java里面用得非常之多。</p>
+<p>网上有牛人写了一些常用的decorators  <a href="https://github.com/jayphelps/core-decorators.js" target="_blank" rel="noopener">core-decorators</a>，源码比较简单，可以学习学习。</p>
+<p>####参考资料<br>decorator描述: <a href="https://github.com/wycats/javascript-decorators" target="_blank" rel="noopener">https://github.com/wycats/javascript-decorators</a><br>core-decorators.js   <a href="https://github.com/jayphelps/core-decorators.js" target="_blank" rel="noopener">https://github.com/jayphelps/core-decorators.js</a><br>decorators 文档  <a href="http://tc39.github.io/proposal-decorators/" target="_blank" rel="noopener">http://tc39.github.io/proposal-decorators/</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/decorator/" rel="tag"># decorator</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/07/react-native使用/" rel="next" title="react-native使用">
+                <i class="fa fa-chevron-left"></i> react-native使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/09/react-native-setNativeProps-详解/" rel="prev" title="react-native-setNativeProps-详解">
+                react-native-setNativeProps-详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/avatar.png" alt="lyan">
+            
+              <p class="site-author-name" itemprop="name">lyan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/liuzheng644607" title="GitHub &rarr; https://github.com/liuzheng644607" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/u/2819564952" title="Weibo &rarr; http://weibo.com/u/2819564952" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:liu-yaner@foxmail.com" title="E-Mail &rarr; mailto:liu-yaner@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/4d71fefa7a45" title="简书 &rarr; https://www.jianshu.com/u/4d71fefa7a45" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>简书</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是Decorator"><span class="nav-number">1.</span> <span class="nav-text">什么是Decorator</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Decorator用法"><span class="nav-number">2.</span> <span class="nav-text">Decorator用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实际使用场景（Logger）"><span class="nav-number">3.</span> <span class="nav-text">实际使用场景（Logger）</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyan</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '80c551d92fa30ec2922d',
+    clientSecret: '5b5a14006758964a4cad462d6a88a64e1ff969f6',
+    repo: 'blogsource',
+    owner: 'liuzheng644607',
+    admin: ['liuzheng644607'],
+    id: md5(location.pathname),
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      
+        background-color: #eee;
+        background-image: linear-gradient(#fcfcfc, #eee);
+        border: 1px solid #d5d5d5;
+        border-radius: 3px;
+      
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      
+        right: 4px;
+        top: 8px;
+      
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1;
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; // Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.readOnly = true;
+        ta.value = code;
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, code.length);
+        ta.readOnly = false;
+        var result = document.execCommand('copy');
+        
+        ta.blur(); // For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+</body>
+</html>
