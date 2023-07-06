@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/assets/favicon.png?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false,"dimmer":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="lyan">
+<meta property="og:url" content="http://lyan.me/index.html">
+<meta property="og:site_name" content="lyan">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="lyan">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="lyan" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://lyan.me/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>lyan</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lyan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-demo">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/demo-entry" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>一些栗子</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lyan.me/2021/04/22/https密钥交换过程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/04/22/https密钥交换过程/" class="post-title-link" itemprop="url">https密钥交换过程</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-04-22 11:45:53" itemprop="dateCreated datePublished" datetime="2021-04-22T11:45:53+08:00">2021-04-22</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h1><ul>
+<li><p>使用 <strong>非对称加密</strong> 处理用于加密数据的密钥</p>
+</li>
+<li><p>使用 <strong>对称加密</strong> 处理具体的数据</p>
+</li>
+</ul>
+<h1 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h1><p><a href="https://drive.google.com/file/d/14vRn_mfvbyN8-JSvktHqMN25kxAl4W_s/view" target="_blank" rel="noopener">流程图地址，按需自取</a></p>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="581px" height="710px" viewbox="-0.5 -0.5 581 710" content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2021-04-22T03:28:40.734Z&quot; agent=&quot;5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36&quot; etag=&quot;r0FVoIzRprTmziIPNl1Z&quot; version=&quot;14.6.5&quot; type=&quot;google&quot;&gt;&lt;diagram id=&quot;BLMGk-S4g4146bWGQgA-&quot; name=&quot;Page-1&quot;&gt;7Vxdl6I4Gv41OWfnojyEBAiXaFk9Z7d3z0zXnN3pS5SoTKM4gFXl/vpJIBESomILttXTdVPkk/B+Pu+bRIAm67cPWbhd/TuNaAJsK3oD6BHYNvRsn/3jNfuqxkFOVbHM4kh0qiue4/9TUWmJ2l0c0VzpWKRpUsRbtXKebjZ0Xih1YZalr2q3RZqob92GS9qqeJ6HSbv2f3FUrKpaYnt1/c80Xq7km6ErPngdys7iS/JVGKWvjSo0BWiSpWlRPa3fJjThxJN0qcY9HWk9LCyjm6LLgN/WD59//fLrM/ycf/jv9MNLjl7++SBmeQmTnfhgsdhiLymQpbtNRPkkFkDj11Vc0OdtOOetr4znrG5VrBNWguxxESfJJE3SrByLIoeSCLP6vMjSL7TRQuwZcl3W0v4MuSaaFfStUSU+6wNN17TI9qyLaHUEhYWIQV+UX2uGQVfUrRrMcj1RGQohWR6mrunIHgQpLyCrPSxZKWSE9Uxk9V0PhT2RFcMOdHVuSldkoKubFJxCKfvOJoHdP3epbHjIS7sSsA4Qb9/qRva05P8nSczpJOZiS6umqxpbrGP0K1T+qHzYpBuqMU1UhUm83LDinL2Nsvox50bMrE0gGtZxFPHXGAVCFZkeOAx1DrttDmMDg+2h+IsH4u8zzRhV/nb8xe6d8de9nr+2ib9gSkDwBMYemLpgDAGxt7tZEs//RfddmU43UcDxAudeEuZ5PFdFgHEh2/8ueFMWPvPCyJHFx7dm4+Nelt7i4nc5B3tujGKlehAvyDFRmK9KOYCn5CBPd9mcnqA2EXgpzJa0OAUChFmlkYKFjorVgzWyHMdtiZLJF8i6jCZhEb+oqMokX+Ktv6RxKRBSzi1Vkm1XE9GKGGJUEwXpE2lg4QA05UQVtU5MJDumi0VOlT6lShzI9fVaQtpaMnUAeQI+5II+dkpB1yX+BMKAFyOMxWJhz+cmhBG5M9fpCWFo5sm2DADDZJ905vdmn6QwnAJu5wxFRTEZLNinKHVW4W6lXGacd7FuqfMQnU1HVKsvtYFt1P1bvKas5mPMvHOLj4z4H8MZi1cV9nV34RllbimclfNxq73lH1Z+qjMGzqPwXSKkZTZWlMUKDPHbaZHUteoQ84olgGZYecRsy+D7awVmeNsHDRCfGb8AA4LB1ANMNolrMH7cLjIDiXlnfwz8aWky2cAJmPrAt0HAXG7QQAXXGMs+oJndwfahEzrfv+07Ds7ybbjpDs4q8GrNwvmXZUnWh3nlPniXbDn7h40J72WzdVo29utnx/rJjO1U1pqwXbXEa7HdoXAZtuOACHoKwCOeBHxmiMcLv9CM2afSyvQJ+6QKncd9/l25IaT5D6SHIV39ENJxhZ6PGNoR+edRxDXpn28DzkzZHxM4g4OhM9uQrWTGPQgAmQiXQKDB7nO7wdwGKb0FAr7DH4gFAq/Flu8m9O/CPWjg3mChv+2cVwpuiCQ+SrNilS7TTZhM61qNTnWfj2m6FQz7gxbFXqCucFekKjt7srF2Vxtr4442trPxvI4LPWRQLXMGBoPxI3fUHKRhEJBJ0Ek5u6ZnkiTe5sfUp19sRo74oYbu+AbVQYOpjnd/qlOnw0bY8RTYdA408ZIOfa7QRNxVE9370sR2luezkasDx6htyp+WwT7CUAwhuQ4yDh+ISm2+J6W7hZZ0jQluoyWoDfn+c8dagvpM1mDs2oojgveuM7Zh/45Bbb/0/hUKD1wDHG8FR6t0Pdvl38TZe92c/WBpGNuUhtHo8w7CRWygozlc1Ddg+qOkIQxn4HQ8Bj4qxfIR+E9tY9IVaLaoTN0jVPb8mdVTWHcAmVJcXW/ktAjtOQaBdYYy0baRzCwGYNTlgTbh6s7xfsD3sDjhJ2AclFndpzKZW+dns3ATpWtTfva7CcxxBz0htwzMkSkwP5P31RK6bGkihdt4+gnITHAZQC7CdZzsqzFsonC9LRsR4sfDVjR5oZwprRZ1Ej0KVdqqVfLGTZqtw0RtfhW05O24WmfZmDD4RbMH9qnzeLM0juey9yDEiDcLSVKaYyYlGzF9c2llY8HkOl+wSeX0fDtKdHhNs0h9u9VDEl0Mj+J8m4SC6vEmiRsvXiRpWDQXdD6krxPvPI4PQGAdtLjWXFYzngLfK/sQMGZ9nsB4wtVfiNUsk6+gm3m23xafarXXe3RN8V+22a3ty/Wg1p6m1qZ8m21Q68GSpciUNLiL7ZzDUQafJ2EJPCYEve3qvJ8TO9IWnw3TpBe5l60bxxv5rlX/YVUbXDjyiDpp50MFmsN0CBnJLOaN9nNwB0h+61SAbsLUUyfXSaGk+HkpdDpK4W2SBXLdg51mDylZGCG+Oyd0tugJIGonAxA2uBLTyQA4WAIaGyB+b+c2ybQ8yFF5hQaOeFeHdQdAFFgP9bAp1DPlJoY7nm3K7+ggUZOM+UFLauazYBmxP5M8eHxXlsDG5i3hNQGq48VjgnEMOl4Gd/QldYCo5xFvC8r0sTKTqvT/lvcLybHccj6R2jNicjKY/hhC7Zb+KJGUGmSVyuCW6oG5gPEmUsoeKocH5SE51kT4sxgOy5SLU4olG/sIgmkUFuF34BmNQdaNPaPhrPY7zNa6XU9ew+F8i+nQ1IUYAx69G6J6kJZC/O3Bhi4PsC0P3i2RhmOC8j+Skj+Skif9ZVvRmxrPdN0TyIwfSWqDtnKnkoUjh87vFvpo2UjXFELeNBuJ3002ssJGPWUgRSZRpgtvmEnEXTOJ0tJecvkP+Wp+D7aka8jbStoNPtfVdja7ZhZbTk+/93QHVwEd05Hn6vzEVGxmB4+m6zCXRBVs0Z0wki79XXfKB0cvmrnzupq7wQI9x5Qwu9B4XJjuNe5anLQ0R/ZHwOndka83SVKWz5ukrveRb2Nw9N8XIfqJlc73UrSJPF3+Bt7HcNrph0/0zx3Ni7Zw3v5yZFuwTqtWH0fsLMdzFZbY10nMDRyC+X7kD4dwMnfuoW/uEUw/bXIbj9BEn2cuJRrvQcLhPELXWzTSddyJR8DYGUGMHB9BmxDL0xLNnu+PfN/xbOI5toOINn/nnW+XT8NiN5d4EPpMiFU3ZClv0ffXh/Yl7T3xTzTfppv8Lm7ad3UmUiuvdibMl2CkioH8cbVv4UxYsf5luap7/ft8aPoX&lt;/diagram&gt;&lt;/mxfile&gt;" style="background-color: rgb(255, 255, 255);"><defs/><g><rect x="70" y="30" width="160" height="670" fill="#d5e8d4" stroke="#82b366" pointer-events="all"/><rect x="430" y="30" width="150" height="670" fill="#e1d5e7" stroke="#9673a6" pointer-events="all"/><rect x="130" y="0" width="40" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 10px; margin-left: 131px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 14px">Client</font></div></div></div></foreignobject><text x="150" y="14" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Client</text></switch></g><rect x="480" y="0" width="40" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 38px; height: 1px; padding-top: 10px; margin-left: 481px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 14px">Server</font></div></div></div></foreignobject><text x="500" y="14" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Server</text></switch></g><path d="M 220 70 L 433.63 65.14" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><path d="M 438.88 65.03 L 431.96 68.68 L 433.63 65.14 L 431.8 61.69 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 68px; margin-left: 324px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 11px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap; "><font style="font-size: 12px">请求publicKey</font></div></div></div></foreignobject><text x="324" y="71" fill="#000000" font-family="Helvetica" font-size="11px" text-anchor="middle">请求publicKey</text></switch></g><rect x="80" y="40" width="140" height="60" rx="9" ry="9" fill="#fff2cc" stroke="#d6b656" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 138px; height: 1px; padding-top: 70px; margin-left: 81px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">发起请求</div></div></div></foreignobject><text x="150" y="74" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">发起请求</text></switch></g><path d="M 30 30 L 30 691.76" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="stroke"/><path d="M 30 697.76 L 26 689.76 L 30 691.76 L 34 689.76 Z" fill="#000000" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 249px; margin-left: 31px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 13px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; background-color: #ffffff; white-space: nowrap; ">Time Line</div></div></div></foreignobject><text x="31" y="252" fill="#000000" font-family="Helvetica" font-size="13px" text-anchor="middle" font-weight="bold">Time Line</text></switch></g><rect x="440" y="40" width="130" height="50" rx="7.5" ry="7.5" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 128px; height: 1px; padding-top: 65px; margin-left: 441px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">处理请求返回公钥:publicKey</div></div></div></foreignobject><text x="505" y="69" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">处理请求返回公钥:publicKey</text></switch></g><path d="M 437.79 83.55 L 225.51 206.8" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><path d="M 220.97 209.44 L 225.26 202.9 L 225.51 206.8 L 228.78 208.95 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 147px; margin-left: 329px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 11px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap; "><span style="font-size: 12px ; background-color: rgb(248 , 249 , 250)">返回publicKey</span></div></div></div></foreignobject><text x="329" y="150" fill="#000000" font-family="Helvetica" font-size="11px" text-anchor="middle">返回publicKey</text></switch></g><rect x="80" y="130" width="140" height="160" fill="#fff2cc" stroke="#d6b656" pointer-events="all"/><rect x="80" y="130" width="110" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 108px; height: 1px; padding-top: 140px; margin-left: 81px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">验证公钥合法性</div></div></div></foreignobject><text x="135" y="144" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">验证公钥合法性</text></switch></g><path d="M 145 190 L 145 210 L 145 190 L 145 203.63" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><path d="M 145 208.88 L 141.5 201.88 L 145 203.63 L 148.5 201.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><ellipse cx="145" cy="175" rx="45" ry="15" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 88px; height: 1px; padding-top: 175px; margin-left: 101px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 10px">使用CA验证公钥</font></div></div></div></foreignobject><text x="145" y="179" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">使用CA验证公钥</text></switch></g><path d="M 145 260 L 145 285 L 144 285 L 143.99 303.63" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><path d="M 143.98 308.88 L 140.49 301.88 L 143.99 303.63 L 147.49 301.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 276px; margin-left: 146px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 11px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap; ">Y</div></div></div></foreignobject><text x="146" y="279" fill="#000000" font-family="Helvetica" font-size="11px" text-anchor="middle">Y</text></switch></g><path d="M 190 235 L 243.63 235" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><path d="M 248.88 235 L 241.88 238.5 L 243.63 235 L 241.88 231.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 235px; margin-left: 208px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 11px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap; ">N</div></div></div></foreignobject><text x="208" y="238" fill="#000000" font-family="Helvetica" font-size="11px" text-anchor="middle">N</text></switch></g><path d="M 145 210 L 190 235 L 145 260 L 100 235 Z" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 88px; height: 1px; padding-top: 235px; margin-left: 101px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">是否合法</div></div></div></foreignobject><text x="145" y="239" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">是否合法</text></switch></g><rect x="80" y="310" width="140" height="110" fill="#fff2cc" stroke="#d6b656" pointer-events="all"/><ellipse cx="287.5" cy="235" rx="37.5" ry="27.5" fill="#ffe6cc" stroke="#d79b00" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 73px; height: 1px; padding-top: 235px; margin-left: 251px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">结束</div></div></div></foreignobject><text x="288" y="239" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">结束</text></switch></g><rect x="60" y="310" width="180" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 178px; height: 1px; padding-top: 320px; margin-left: 61px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">生成随机密钥:randomKey</div></div></div></foreignobject><text x="150" y="324" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">生成随机密钥:randomKey</text></switch></g><rect x="90" y="330" width="120" height="60" rx="9" ry="9" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 360px; margin-left: 91px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 13px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><span style="color: rgb(0 , 0 , 0) ; font-family: &quot;helvetica&quot; ; font-size: 10px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-align: center ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none">使用publicKey加密randomKey得到：<br/>encryptRandomKey<br/></span></div></div></div></foreignobject><text x="150" y="364" fill="#000000" font-family="Helvetica" font-size="13px" text-anchor="middle">使用publicKey加密randomKey…</text></switch></g><path d="M 210 360 L 434.3 247.85" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><path d="M 439 245.5 L 434.3 251.76 L 434.3 247.85 L 431.17 245.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 302px; margin-left: 325px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 11px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap; "><span style="font-size: 12px ; background-color: rgb(248 , 249 , 250)">发送encryptRandomKey</span></div></div></div></foreignobject><text x="325" y="306" fill="#000000" font-family="Helvetica" font-size="11px" text-anchor="middle">发送encryptRan…</text></switch></g><path d="M 505 310 L 505 330 L 505 310 L 505 323.63" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><path d="M 505 328.88 L 501.5 321.88 L 505 323.63 L 508.5 321.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><rect x="440" y="180" width="130" height="130" fill="#dae8fc" stroke="#6c8ebf" pointer-events="all"/><rect x="450" y="187.5" width="90" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 88px; height: 1px; padding-top: 198px; margin-left: 451px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 13px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 12px">获取randomKey</font></div></div></div></foreignobject><text x="495" y="201" fill="#000000" font-family="Helvetica" font-size="13px" text-anchor="middle">获取randomKey</text></switch></g><rect x="445" y="210" width="120" height="80" rx="12" ry="12" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 250px; margin-left: 446px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 13px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">使用<font color="#ff3333">私钥解密</font><br/><span style="font-size: 12px">encryptRandomKey<br/>得到：</span><span style="font-size: 12px">randomKey</span><span style="font-size: 12px"><br/></span></div></div></div></foreignobject><text x="505" y="254" fill="#000000" font-family="Helvetica" font-size="13px" text-anchor="middle">使用私钥解密encryptRandomKey…</text></switch></g><rect x="440" y="330" width="130" height="130" fill="#dae8fc" stroke="#6c8ebf" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 128px; height: 1px; padding-top: 395px; margin-left: 441px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">使用randomKey加密要传输的业务数据data</div></div></div></foreignobject><text x="505" y="399" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">使用randomKey加密要传输的业务数据data</text></switch></g><rect x="80" y="440" width="140" height="120" fill="#fff2cc" stroke="#d6b656" pointer-events="all"/><rect x="80" y="450" width="70" height="20" fill="none" stroke="none" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 68px; height: 1px; padding-top: 460px; margin-left: 81px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 13px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><font style="font-size: 11px">解密数据</font></div></div></div></foreignobject><text x="115" y="464" fill="#000000" font-family="Helvetica" font-size="13px" text-anchor="middle">解密数据</text></switch></g><rect x="90" y="480" width="120" height="60" rx="9" ry="9" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 510px; margin-left: 91px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 13px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; "><span style="color: rgb(0 , 0 , 0) ; font-family: &quot;helvetica&quot; ; font-size: 10px ; font-style: normal ; font-weight: 400 ; letter-spacing: normal ; text-align: center ; text-indent: 0px ; text-transform: none ; word-spacing: 0px ; background-color: rgb(248 , 249 , 250) ; display: inline ; float: none">使用randomKey解密密文，得到明文<br/></span></div></div></div></foreignobject><text x="150" y="514" fill="#000000" font-family="Helvetica" font-size="13px" text-anchor="middle">使用randomKey解密密文，得到明文&#xa;</text></switch></g><path d="M 440 395 L 215.92 483.86" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><path d="M 211.04 485.79 L 216.26 479.96 L 215.92 483.86 L 218.84 486.47 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 440px; margin-left: 330px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 11px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap; "><span style="font-size: 12px ; background-color: rgb(248 , 249 , 250)">发送data</span></div></div></div></foreignobject><text x="330" y="443" fill="#000000" font-family="Helvetica" font-size="11px" text-anchor="middle">发送data</text></switch></g><ellipse cx="150" cy="620" rx="60" ry="40" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 620px; margin-left: 91px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 13px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">后续请求使用randomKey加密/解密数据</div></div></div></foreignobject><text x="150" y="624" fill="#000000" font-family="Helvetica" font-size="13px" text-anchor="middle">后续请求使用randomKey加密/解密数据</text></switch></g><path d="M 192.43 591.72 L 461.21 581.95" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><path d="M 466.46 581.76 L 459.59 585.51 L 461.21 581.95 L 459.33 578.51 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 585px; margin-left: 323px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 13px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap; ">Request</div></div></div></foreignobject><text x="323" y="589" fill="#000000" font-family="Helvetica" font-size="13px" text-anchor="middle">Request</text></switch></g><ellipse cx="510" cy="610" rx="60" ry="40" fill="#ffffff" stroke="#000000" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 610px; margin-left: 451px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 13px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">后续请求使用randomKey加密/解密数据</div></div></div></foreignobject><text x="510" y="614" fill="#000000" font-family="Helvetica" font-size="13px" text-anchor="middle">后续请求使用randomKey加密/解密数据</text></switch></g><path d="M 467.57 638.28 L 198.79 648.05" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke"/><path d="M 193.54 648.24 L 200.41 644.49 L 198.79 648.05 L 200.67 651.49 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><g transform="translate(-0.5 -0.5)"><switch><foreignobject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 643px; margin-left: 324px;"><div style="box-sizing: border-box; font-size: 0; text-align: center; "><div style="display: inline-block; font-size: 13px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap; ">Response</div></div></div></foreignobject><text x="324" y="647" fill="#000000" font-family="Helvetica" font-size="13px" text-anchor="middle">Response</text></switch></g></g><switch><g requiredfeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/><a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank"><text text-anchor="middle" font-size="10px" x="50%" y="100%">Viewer does not support full SVG 1.1</text></a></switch></svg>
+
+<h1 id="流程说明"><a href="#流程说明" class="headerlink" title="流程说明"></a>流程说明</h1><h2 id="1-客户端获取公钥"><a href="#1-客户端获取公钥" class="headerlink" title="1.客户端获取公钥"></a>1.客户端获取公钥</h2><ul>
+<li><p>客户端发送请求，服务端返回公钥</p>
+</li>
+<li><p>客户端用证书验证公钥，如果合法，继续下一步</p>
+</li>
+</ul>
+<h2 id="2-客户端生成用于加密数据的密钥"><a href="#2-客户端生成用于加密数据的密钥" class="headerlink" title="2.客户端生成用于加密数据的密钥"></a>2.客户端生成用于加密数据的密钥</h2><ul>
+<li>客户端生成随机密钥</li>
+<li>然后用服务器返回的公钥对这个密钥加密，得到加密后的密钥</li>
+</ul>
+<h2 id="3-服务端验证密钥"><a href="#3-服务端验证密钥" class="headerlink" title="3.服务端验证密钥"></a>3.服务端验证密钥</h2><ul>
+<li>客户端将加密后的密钥发给服务端</li>
+<li>服务端使用私钥解密得到密钥</li>
+</ul>
+<h2 id="4-使用密钥加密数据进行传输，使用密钥解密数据得到明文"><a href="#4-使用密钥加密数据进行传输，使用密钥解密数据得到明文" class="headerlink" title="4.使用密钥加密数据进行传输，使用密钥解密数据得到明文"></a>4.使用密钥加密数据进行传输，使用密钥解密数据得到明文</h2><ul>
+<li>服务端使用获得的密钥加密数据，发送给客户端</li>
+<li>客户端使用密钥解密得到明文。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lyan.me/2020/12/02/根据末节点找到指定路径/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/12/02/根据末节点找到指定路径/" class="post-title-link" itemprop="url">根据末节点找到指定路径</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-12-02 17:53:54" itemprop="dateCreated datePublished" datetime="2020-12-02T17:53:54+08:00">2020-12-02</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>在业务开发中，经常会遇到级联的数据结构，比如省市区、公司组织架构等; 如下图中的树形结构，现在要找出</p>
+</blockquote>
+<p><img src="/assets/tree.png" width="500" style="margin: 30px auto 0 auto"></p>
+<h1 id="数据结构定义如下"><a href="#数据结构定义如下" class="headerlink" title="数据结构定义如下"></a>数据结构定义如下</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface Node &#123;</span><br><span class="line">  value: any;</span><br><span class="line">  children?: Node[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findPath</span>(<span class="params">node, v</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">walk</span>(<span class="params">node, path = []</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!node) &#123;</span><br><span class="line">      <span class="keyword">return</span> path;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> &#123; children, value &#125; = node;</span><br><span class="line">    <span class="keyword">if</span> (children &amp;&amp; children.length) &#123;</span><br><span class="line">      <span class="keyword">let</span> len = children.length;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> n = children[i];</span><br><span class="line">        walk(n, path.slice(<span class="number">0</span>));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      path.push(value);</span><br><span class="line">      <span class="keyword">if</span> (value === v) &#123;</span><br><span class="line">        <span class="keyword">return</span> path;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lyan.me/2019/03/22/使用-route装饰器简化koa-router写法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/22/使用-route装饰器简化koa-router写法/" class="post-title-link" itemprop="url">使用@route装饰器简化koa-router写法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-22 12:38:24" itemprop="dateCreated datePublished" datetime="2019-03-22T12:38:24+08:00">2019-03-22</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文所有代码见<a href="https://github.com/liuzheng644607/project-start-seed/tree/master/src/server" target="_blank" rel="noopener">github</a></p>
+<h2 id="koa-router"><a href="#koa-router" class="headerlink" title="koa-router"></a>koa-router</h2><p><a href="https://www.npmjs.com/package/koa-router" target="_blank" rel="noopener">koa-router</a>是<a href="https://www.npmjs.com/package/koa" target="_blank" rel="noopener">koa</a>项目中被广泛使用到的一个路由中间件。<br>koa-router的基本使用方法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</span><br><span class="line"><span class="keyword">var</span> Router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> Router();</span><br><span class="line"> </span><br><span class="line">router.get(<span class="string">'/'</span>, (ctx, next) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ctx.router available</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 在app中使用routes中间件</span></span><br><span class="line">app</span><br><span class="line">  .use(router.routes())</span><br><span class="line">  .use(router.allowedMethods());</span><br></pre></td></tr></table></figure></p>
+<p>可以看到，如果项目中有很多路由，那么我们需要写很多的类似<code>router.get(&#39;xxx&#39;, () =&gt; {})</code>这样的代码，重复劳动（多写了几个单词？）。我们需要一种方式来简化router的书写，decorator（装饰器/注解）登场了。<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/22/使用-route装饰器简化koa-router写法/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lyan.me/2019/03/20/nginx配置https/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/20/nginx配置https/" class="post-title-link" itemprop="url">nginx配置https</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-20 16:34:18" itemprop="dateCreated datePublished" datetime="2019-03-20T16:34:18+08:00">2019-03-20</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>我的服务器使用的系统是CentOS 6，因此直接使用yum安装nginx，其它系统以及版本可能有所差异。</p>
+<h2 id="使用yum安装nginx"><a href="#使用yum安装nginx" class="headerlink" title="使用yum安装nginx"></a>使用yum安装nginx</h2><p>step1, 先要安装nginx的yum源</p>
+<h3 id="设置源"><a href="#设置源" class="headerlink" title="设置源"></a>设置源</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh http:<span class="regexp">//</span>nginx.org<span class="regexp">/packages/</span>centos<span class="regexp">/6/</span>noarch<span class="regexp">/RPMS/</span>nginx-release-centos-<span class="number">6</span>-<span class="number">0</span>.el6.ngx.noarch.rpm</span><br></pre></td></tr></table></figure>
+<p>执行完上面的命令后，我们使用命令<code>yum info nginx</code>查看一下Nginx 软件包信息.<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/20/nginx配置https/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lyan.me/2019/01/13/微信小程序IDE上传-预览代码分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/13/微信小程序IDE上传-预览代码分析/" class="post-title-link" itemprop="url">微信小程序IDE上传/预览代码分析</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-13 18:45:37" itemprop="dateCreated datePublished" datetime="2019-01-13T18:45:37+08:00">2019-01-13</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>接口分析见：<a href="https://www.jianshu.com/p/a1f357152dca" title="小程序IDE http接口分析" target="_blank" rel="noopener">小程序IDE http接口分析</a></p>
+</blockquote>
+<h2 id="打包源代码"><a href="#打包源代码" class="headerlink" title="打包源代码"></a>打包源代码</h2><p>主要步骤就是，遍历小程序项目目录，读取每一个文件，最终合并成一个文件<br>内容如下：packFile.js</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="built_in">require</span>(<span class="string">"glob"</span>),</span><br><span class="line">b = <span class="built_in">require</span>(<span class="string">"fs"</span>),</span><br><span class="line">c = <span class="built_in">require</span>(<span class="string">"path"</span>),</span><br><span class="line">e = <span class="built_in">require</span>(<span class="string">"crypto"</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="keyword">async</span> (f, g, h = &#123;&#125;) =&gt; &#123;</span><br><span class="line"><span class="keyword">var</span> i = [</span><br><span class="line">  <span class="keyword">new</span> Buffer(<span class="number">1</span>),</span><br><span class="line">  <span class="keyword">new</span> Buffer(<span class="number">4</span>),</span><br><span class="line">  <span class="keyword">new</span> Buffer(<span class="number">4</span>),</span><br><span class="line">  <span class="keyword">new</span> Buffer(<span class="number">4</span>),</span><br><span class="line">  <span class="keyword">new</span> Buffer(<span class="number">1</span>)</span><br><span class="line">];</span><br><span class="line">i[<span class="number">0</span>].writeIntLE(<span class="number">190</span>), i[<span class="number">1</span>].writeInt32BE(<span class="number">1</span>), i[<span class="number">4</span>].writeIntLE(<span class="number">237</span>);</span><br><span class="line"><span class="keyword">let</span> j = <span class="number">0</span>,</span><br><span class="line">  k = [],</span><br><span class="line">  l = [],</span><br><span class="line">  m = [],</span><br><span class="line">  n = [],</span><br><span class="line">  o = [];</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">p, q</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> r = <span class="built_in">Object</span>.assign(&#123; nodir: !<span class="number">0</span> &#125;, h),</span><br><span class="line">    s = &#123;&#125;;</span><br><span class="line">  a(<span class="string">`<span class="subst">$&#123;f&#125;</span>/**`</span>, r, <span class="function">(<span class="params">a, r</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!a) &#123;</span><br><span class="line">      r.forEach(<span class="function"><span class="params">a</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> d = b.readFileSync(a),</span><br><span class="line">          g = c.relative(f, a);</span><br><span class="line">        <span class="keyword">if</span> (h.needMd5) &#123;</span><br><span class="line">          <span class="keyword">let</span> a = e.createHash(<span class="string">"md5"</span>);</span><br><span class="line">          a.update(d);</span><br><span class="line">          <span class="keyword">let</span> b = a.digest(<span class="string">"hex"</span>);</span><br><span class="line">          <span class="keyword">if</span> (((s[g] = b), h.ignoreFileMd5 &amp;&amp; h.ignoreFileMd5[g] == b))</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> i = <span class="keyword">new</span> Buffer(<span class="string">`/<span class="subst">$&#123;g.replace(<span class="regexp">/\\/g</span>, <span class="string">"/"</span>)&#125;</span>`</span>);</span><br><span class="line">        j++, m.push(i), n.push(d);</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">let</span> a = <span class="number">18</span> + <span class="number">12</span> * j + Buffer.concat(m).length;</span><br><span class="line">      l = m.map(<span class="function">(<span class="params">b, c</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> d = <span class="keyword">new</span> Buffer(<span class="number">4</span>);</span><br><span class="line">        d.writeInt32BE(b.length);</span><br><span class="line">        <span class="keyword">let</span> e = <span class="keyword">new</span> Buffer(<span class="number">4</span>),</span><br><span class="line">          f = n[c].length,</span><br><span class="line">          g = a;</span><br><span class="line">        e.writeInt32BE(g), (a += f);</span><br><span class="line">        <span class="keyword">let</span> h = <span class="keyword">new</span> Buffer(<span class="number">4</span>);</span><br><span class="line">        <span class="keyword">return</span> h.writeInt32BE(f), Buffer.concat([d, b, e, h]);</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">let</span> q = <span class="keyword">new</span> Buffer(<span class="number">4</span>);</span><br><span class="line">      q.writeInt32BE(j),</span><br><span class="line">        l.unshift(q),</span><br><span class="line">        (k = Buffer.concat(l)),</span><br><span class="line">        (o = Buffer.concat(n)),</span><br><span class="line">        i[<span class="number">2</span>].writeInt32BE(k.length),</span><br><span class="line">        i[<span class="number">3</span>].writeInt32BE(o.length),</span><br><span class="line">        (i = Buffer.concat(i));</span><br><span class="line">      <span class="keyword">let</span> t = Buffer.concat([i, k, o]);</span><br><span class="line">      b.writeFileSync(g, t),</span><br><span class="line">        p(&#123; destPath: g, data: t, fileMd5Info: s &#125;);</span><br><span class="line">    &#125; <span class="keyword">else</span> q(a);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="上传预览"><a href="#上传预览" class="headerlink" title="上传预览"></a>上传预览</h2><p>使用packFile.js打包源代码，将结果拿到，然后进行gz压缩，调用request模块进行上传.<br>upload.js 如下<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> zlib = <span class="built_in">require</span>(<span class="string">"zlib"</span>);</span><br><span class="line"><span class="keyword">const</span> request = <span class="built_in">require</span>(<span class="string">"request"</span>);</span><br><span class="line"><span class="keyword">const</span> readFile = <span class="built_in">require</span>(<span class="string">'./packFile'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> url = <span class="string">'https://servicewechat.com/wxa-dev-new/testsource?_r=0.8285819896175328&amp;appid=xxx&amp;platform=0&amp;ext_appid=&amp;os=darwin&amp;clientversion=1011711020&amp;gzip=1&amp;path=pages%2Fhome%3F&amp;newticket=_GWuaDA19IaLERB2pjnjJGaI61JHOfXnA8N6dDoJT20&amp;os=darwin&amp;clientversion=1.01.1711020'</span>;</span><br><span class="line"><span class="keyword">var</span> f = readFile(<span class="string">'dist/'</span>, <span class="string">'./1.wx'</span>).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> data = zlib.gzipSync(res.data);</span><br><span class="line">    request(&#123; url, body: data, method: <span class="string">'post'</span>,<span class="string">"proxy"</span>:<span class="string">"http://127.0.0.1:8888"</span>,<span class="string">"tunnel"</span>:<span class="literal">false</span> &#125;, <span class="function">(<span class="params">a, b, c</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(c));</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>运行 <code>sudo node ./upload.js</code>;<br>则会生成<code>1.wx</code>文件，拿到这个文件上传就行了～</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lyan.me/2019/01/10/微信小程序IDE之http接口分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/10/微信小程序IDE之http接口分析/" class="post-title-link" itemprop="url">微信小程序IDE之http接口分析</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-10 18:33:34" itemprop="dateCreated datePublished" datetime="2019-01-10T18:33:34+08:00">2019-01-10</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>在2017年的时候就做了这个分析，一直没发出来。⚠️注意文中使用的ide版本是Mac 版的，ide version: 1.01.1711020，不推荐在生产环境中使用。</p>
+</blockquote>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>下载IDE版本：1.01.1711020</p>
+<ul>
+<li><p>美化开发工具js代码：在js目录执行命令 <code>find . -type f -name &#39;*.js&#39; -exec js-beautify -r -s 2 -p -f &#39;{}&#39; \</code>;</p>
+</li>
+<li><p>打开针对IDE的调试工具：在./app.nw/js/core/index.js 第81行 init() 过后 加入以下代码：<code>nw.Window.get().showDevTools()</code>;</p>
+</li>
+<li><p>在IDE源码中使用 <code>global.contentWindow.console.log</code> 来打印变量</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/10/微信小程序IDE之http接口分析/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </li></ul></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lyan.me/2019/01/01/使用shell命令从请求日志中分析pv、uv/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/01/使用shell命令从请求日志中分析pv、uv/" class="post-title-link" itemprop="url">使用shell命令从请求日志中分析pv、uv</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-01 11:05:58" itemprop="dateCreated datePublished" datetime="2019-01-01T11:05:58+08:00">2019-01-01</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>在日常工作中，我们经常要统计用户的访问量。<br>对于pv、uv的统计方式有很多，一般就是前端主动埋点，然后去相关的系统里面查看。<br>但有时候，前端可能忘记埋点，或者一些其它原因，导致拿不到pv、uv。这个时候，我们可以通过用户的请求日志中来分析出pv、uv。</p>
+</blockquote>
+<p>#准备<br>假如我们有如下日志，其中<strong><em>user_id</em></strong>为用户唯一id，那么就可以通过这个字段来统计UV。其实我们的需求就是匹配出每行日志中的user_id值，然后进行排序，去重，就可以拿到数量了。最简单的办法是通过正则匹配，在这篇文章里我们另辟蹊径。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/01/使用shell命令从请求日志中分析pv、uv/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lyan.me/2018/08/23/mac命令行更改文件权限/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lyan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/assets/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lyan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/08/23/mac命令行更改文件权限/" class="post-title-link" itemprop="url">mac命令行更改文件权限</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-23 18:02:55" itemprop="dateCreated datePublished" datetime="2018-08-23T18:02:55+08:00">2018-08-23</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>在开发一些系统应用的时候，有时候需要让用户输入电脑密码，然后我们拿到密码对系统进行操作。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span>  userpassword | sudo -S chmod 777 path-or-dir</span><br></pre></td></tr></table></figure>
+<p>我们先知道了密码，然后在进行系统操作。是个什么场景呢？比如开发了一款更改hosts文件的小工具，但是更改hosts文件需要用户电脑密码授权。我们可以给用户弹个输入框接收密码，然后拿到密码就可以做各种操作了。</p>
+<p>平常更改hosts文件的流程是：先进行了修改，然后系统提示你输入密码。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> child_process = <span class="built_in">require</span>(<span class="string">"child_process"</span>);</span><br><span class="line"><span class="keyword">const</span> prompt = <span class="built_in">require</span>(<span class="string">"prompt"</span>);</span><br><span class="line"></span><br><span class="line">prompt.start();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> schema = &#123;</span><br><span class="line">  properties: &#123;</span><br><span class="line">    password: &#123;</span><br><span class="line">      description: <span class="string">"Enter your password"</span>,</span><br><span class="line">      replace: <span class="string">"*"</span>,</span><br><span class="line">      hidden: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">prompt.get(schema, (err, result) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123;</span><br><span class="line">    <span class="keyword">throw</span> err;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  child_process.exec(<span class="string">`echo <span class="subst">$&#123;result.password&#125;</span> | sudo -S chmod 777 ./src/test.js`</span>, (error, res) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (error) &#123;</span><br><span class="line">      <span class="keyword">throw</span> error;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p> 更改过的文件权限信息如下</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/188895-4052a9df85929d40.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/avatar.png" alt="lyan">
+            
+              <p class="site-author-name" itemprop="name">lyan</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/liuzheng644607" title="GitHub &rarr; https://github.com/liuzheng644607" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/u/2819564952" title="Weibo &rarr; http://weibo.com/u/2819564952" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:liu-yaner@foxmail.com" title="E-Mail &rarr; mailto:liu-yaner@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/4d71fefa7a45" title="简书 &rarr; https://www.jianshu.com/u/4d71fefa7a45" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>简书</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lyan</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      
+        background-color: #eee;
+        background-image: linear-gradient(#fcfcfc, #eee);
+        border: 1px solid #d5d5d5;
+        border-radius: 3px;
+      
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      
+        right: 4px;
+        top: 8px;
+      
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1;
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; // Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.readOnly = true;
+        ta.value = code;
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, code.length);
+        ta.readOnly = false;
+        var result = document.execCommand('copy');
+        
+        ta.blur(); // For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+</body>
+</html>
